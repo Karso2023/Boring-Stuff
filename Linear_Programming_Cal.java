@@ -28,6 +28,11 @@ public class Linear_Programming_Cal {
     linearProgrammingCal.calculate(function);
   }
 
+
+  /**
+   * Combine different methods
+   * @param number 2D array
+   */
   public void calculate(int[][] number) {
 
     print2DArray(number);
@@ -38,7 +43,11 @@ public class Linear_Programming_Cal {
     simulateCalculation(minRatio, number);
   }
 
-  
+
+  /**
+   * Print 2D array
+   * @param number 2D array
+   */
   private void print2DArray(int[][] number) {
     System.out.println("Contents of the 2D array:");
     for (int[] row : number) {
@@ -49,6 +58,12 @@ public class Linear_Programming_Cal {
     }
   }
 
+  /**
+   * This is the first step for phase one simplex method
+   * Cal min. ratio
+   * @param number number
+   * @return min. ratio
+   */
   private double findMinRatio(int[][] number) {
     double minRatio = Double.MAX_VALUE;
 
@@ -64,6 +79,12 @@ public class Linear_Programming_Cal {
     return minRatio;
   }
 
+
+  /**
+   * Some fancy effects
+   * @param minRatio minRatio
+   * @param number number
+   */
   private void simulateCalculation(double minRatio, int[][] number) {
     try {
       int numberOfDots = 5;
