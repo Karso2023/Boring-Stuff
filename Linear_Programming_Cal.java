@@ -81,7 +81,7 @@ public class Linear_Programming_Cal {
   }
 
   /**
-   * Bland's rule
+   * Bland's rule, it should return related position 
    * @param number number
    * @return negative element
    */
