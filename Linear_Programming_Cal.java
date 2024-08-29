@@ -37,13 +37,22 @@ public class Linear_Programming_Cal {
       System.out.println();
     }
 
-    // Calculate part
+    // Find min. ratio
     for(int i=1; i<number.length; i++) {
         double last_element = number[i][number[i].length-1];
         double first_element = number[i][0];
 
         minRatio = Math.min(minRatio, last_element / first_element);
     }
+
+    // Find -ve in objective function
+
+
+
+
+
+
+
 
     try {
       int numberOfDots = 5; // Number of dots to print
