@@ -34,5 +34,20 @@ public class Linear_Programming_Cal {
       }
       System.out.println();
     }
+
+
+    try {
+      System.out.println("Calculating");
+      int numberOfDots = 5; // Number of dots to print
+      int delay = 300; // Delay in milliseconds
+      for (int i = 0; i < numberOfDots; i++) {
+        System.out.print(".");
+        Thread.sleep(delay);
+      }
+
+      System.out.println("\nThe max. number is: " + number[0][5]);
+    } catch (InterruptedException e) {
+      System.err.println(e.getMessage());
+    }
   }
 }
