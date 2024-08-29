@@ -28,6 +28,8 @@ public class Linear_Programming_Cal {
   }
 
   private void calculate(int[][] number) {
+    double minRatio = Double.MAX_VALUE;
+    
     for (int[] ints : number) {
       for (int anInt : ints) {
         System.out.print(anInt + " | " + " ");
@@ -35,16 +37,28 @@ public class Linear_Programming_Cal {
       System.out.println();
     }
 
+    // Calculate part
+    for(int i=1; i<number.length; i++) {
+        double last_element = number[i][number[i].length-1];
+        double first_element = number[i][0];
+
+        minRatio = Math.min(minRatio, last_element / first_element);
+    }
 
     try {
-      System.out.println("Calculating");
       int numberOfDots = 5; // Number of dots to print
-      int delay = 300; // Delay in milliseconds
+      int delay = 250; // Delay in milliseconds
+
+      Thread.sleep(delay);
+      System.out.println("\nCalculating\n");
+
       for (int i = 0; i < numberOfDots; i++) {
         System.out.print(".");
         Thread.sleep(delay);
       }
-
+      Thread.sleep(delay);
+      System.out.println("\n\nFirst min. ratio: " + minRatio);
+      Thread.sleep(delay);
       System.out.println("\nThe max. number is: " + number[0][5]);
     } catch (InterruptedException e) {
       System.err.println(e.getMessage());
