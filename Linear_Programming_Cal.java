@@ -98,6 +98,15 @@ public class Linear_Programming_Cal {
     return negativeElement;
   }
 
+  /**
+   * Method to modify and calculate the 2D array
+   * How to update and return ?
+   * @param number
+   */
+  private void modifyArray(int[][] number) {
+
+  }
+
 
   /**
    * Some fancy effects
