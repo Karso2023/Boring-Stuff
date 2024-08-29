@@ -61,7 +61,7 @@ public class Linear_Programming_Cal {
 
   /**
    * This is the first step for phase one simplex method
-   * Cal min. ratio
+   * Cal min. ratio and should return the related array position
    * @param number number
    * @return min. ratio
    */
@@ -72,7 +72,7 @@ public class Linear_Programming_Cal {
       double lastElement = number[i][number[i].length - 1];
       double firstElement = number[i][0];
 
-      if (firstElement != 0) { // Avoid division by zero
+      if (firstElement > 0 && lastElement > 0) { // Avoid negative, > 0 or >= 0 ?
         minRatio = Math.min(minRatio, lastElement / firstElement);
       }
     }
@@ -101,9 +101,9 @@ public class Linear_Programming_Cal {
   /**
    * Method to modify and calculate the 2D array
    * How to update and return ?
-   * @param number
+   * @param number number
    */
-  private void modifyArray(int[][] number) {
+  private int[][] modifyArray(int[][] number) {
 
   }
 
