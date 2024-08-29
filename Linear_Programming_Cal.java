@@ -38,9 +38,10 @@ public class Linear_Programming_Cal {
     print2DArray(number);
 
     double minRatio = findMinRatio(number);
+    int negative = findNegative(number);
 
     // Simulate calculation with delay
-    simulateCalculation(minRatio, number);
+    simulateCalculation(minRatio, negative, number);
   }
 
 
@@ -79,13 +80,31 @@ public class Linear_Programming_Cal {
     return minRatio;
   }
 
+  /**
+   * Bland's rule
+   * @param number number
+   * @return negative element
+   */
+  private int findNegative(int[][] number) {
+    int negativeElement = 0;
+
+    //How to restart and continue to second iterate ?
+    for(int i=0; i<number.length; i++) {
+      if(number[0][i] < 0 && negativeElement == 0) {
+        negativeElement = number[0][i];
+      }
+    }
+
+    return negativeElement;
+  }
+
 
   /**
    * Some fancy effects
    * @param minRatio minRatio
    * @param number number
    */
-  private void simulateCalculation(double minRatio, int[][] number) {
+  private void simulateCalculation(double minRatio, int negative, int[][] number) {
     try {
       int numberOfDots = 5;
       int delay = 250;
@@ -99,6 +118,8 @@ public class Linear_Programming_Cal {
       }
       Thread.sleep(delay);
       System.out.println("\n\nFirst min. ratio: " + minRatio);
+      Thread.sleep(delay);
+      System.out.println("\nFirst negative element in objective function: " + negative);
       Thread.sleep(delay);
       System.out.println("\nThe max. number is: " + number[0][number[0].length - 1]);
     } catch (InterruptedException e) {
