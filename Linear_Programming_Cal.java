@@ -15,6 +15,7 @@ public class Linear_Programming_Cal {
   */
 
   public static void main(String[] args) {
+
     //Change your input here, I will make a better version later
     int[][] function = new int[][] {
             {-6, -3, 0, 0, 0, 0},  //Objective function
@@ -27,36 +28,46 @@ public class Linear_Programming_Cal {
     linearProgrammingCal.calculate(function);
   }
 
-  private void calculate(int[][] number) {
-    double minRatio = Double.MAX_VALUE;
-    
-    for (int[] ints : number) {
-      for (int anInt : ints) {
-        System.out.print(anInt + " | " + " ");
+  public void calculate(int[][] number) {
+
+    print2DArray(number);
+
+    double minRatio = findMinRatio(number);
+
+    // Simulate calculation with delay
+    simulateCalculation(minRatio, number);
+  }
+
+  
+  private void print2DArray(int[][] number) {
+    System.out.println("Contents of the 2D array:");
+    for (int[] row : number) {
+      for (int element : row) {
+        System.out.print(element + " | ");
       }
       System.out.println();
     }
+  }
 
-    // Find min. ratio
-    for(int i=1; i<number.length; i++) {
-        double last_element = number[i][number[i].length-1];
-        double first_element = number[i][0];
+  private double findMinRatio(int[][] number) {
+    double minRatio = Double.MAX_VALUE;
 
-        minRatio = Math.min(minRatio, last_element / first_element);
+    for (int i = 1; i < number.length; i++) {
+      double lastElement = number[i][number[i].length - 1];
+      double firstElement = number[i][0];
+
+      if (firstElement != 0) { // Avoid division by zero
+        minRatio = Math.min(minRatio, lastElement / firstElement);
+      }
     }
 
-    // Find -ve in objective function
+    return minRatio;
+  }
 
-
-
-
-
-
-
-
+  private void simulateCalculation(double minRatio, int[][] number) {
     try {
-      int numberOfDots = 5; // Number of dots to print
-      int delay = 250; // Delay in milliseconds
+      int numberOfDots = 5;
+      int delay = 250;
 
       Thread.sleep(delay);
       System.out.println("\nCalculating\n");
@@ -68,9 +79,10 @@ public class Linear_Programming_Cal {
       Thread.sleep(delay);
       System.out.println("\n\nFirst min. ratio: " + minRatio);
       Thread.sleep(delay);
-      System.out.println("\nThe max. number is: " + number[0][5]);
+      System.out.println("\nThe max. number is: " + number[0][number[0].length - 1]);
     } catch (InterruptedException e) {
       System.err.println(e.getMessage());
     }
   }
+
 }
