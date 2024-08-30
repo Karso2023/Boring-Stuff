@@ -114,13 +114,11 @@ public class Linear_Programming_Cal {
     double absoluteRow;
 
     for(int i=0; i<number.length; i++) {
-      for (int j=0; j<number[i].length; j++) {
         minRat = number[minIndex][i];
         absoluteElement = number[i][0];
-        absoluteRow = number[i][j];
+        absoluteRow = number[i][number[i].length-1];
         double formula = neg - ((absoluteElement * absoluteRow) / minRat);
-        number[i][j] = (int) formula;
-      }
+        number[i][number[i].length-1] = (int) formula;
     }
 
     return number;
@@ -135,6 +133,7 @@ public class Linear_Programming_Cal {
     try {
       int numberOfDots = 5;
       int delay = 250;
+      int[][] updatedArray = modifyArray(number);
 
       Thread.sleep(delay);
       System.out.println("\nCalculating\n");
@@ -147,6 +146,14 @@ public class Linear_Programming_Cal {
       System.out.println("\n\nFirst min. ratio: " + minRatio);
       Thread.sleep(delay);
       System.out.println("\nFirst negative element in objective function: " + negativeElement);
+      Thread.sleep(delay);
+      System.out.println("\n1st Updated Array: ");
+      for (int[] row : updatedArray) {
+        for (int element : row) {
+          System.out.print(element + " | ");
+        }
+        System.out.println();
+      }
       Thread.sleep(delay);
       System.out.println("\nThe max. number is: " + number[0][number[0].length - 1]);
     } catch (InterruptedException e) {
