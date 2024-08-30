@@ -45,7 +45,21 @@ public class Linear_Programming_Cal {
     int negative = findNegative(number);
 
     // Simulate calculation with delay
-    simulateCalculation(number);
+    while (true) {
+      // Check if there are negative elements in the first row
+      boolean hasNegative = false;
+      for (int value : number[0]) {
+        if (value < 0) {
+          hasNegative = true;
+          break;
+        }
+      }
+
+      if (!hasNegative) {
+        break;
+      }
+      simulateCalculation(number);
+    }
   }
 
 
@@ -113,6 +127,9 @@ public class Linear_Programming_Cal {
     double absoluteElement;
     double absoluteRow;
 
+    /*
+
+     */
     for(int i=0; i<number.length; i++) {
         minRat = number[minIndex][i];
         absoluteElement = number[i][0];
