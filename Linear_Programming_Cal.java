@@ -14,6 +14,10 @@ public class Linear_Programming_Cal {
   -> print result if no -ve in objective function
   */
 
+  protected double minRatio = Double.MAX_VALUE;
+  protected int negativeElement = 0;
+  protected int minIndex = -1;
+  protected int negativeIndex = -1;
   public static void main(String[] args) {
 
     //Change your input here, I will make a better version later
@@ -41,7 +45,7 @@ public class Linear_Programming_Cal {
     int negative = findNegative(number);
 
     // Simulate calculation with delay
-    simulateCalculation(minRatio, negative, number);
+    simulateCalculation(number);
   }
 
 
@@ -65,8 +69,7 @@ public class Linear_Programming_Cal {
    * @param number number
    * @return min. ratio
    */
-  private double findMinRatio(int[][] number) {
-    double minRatio = Double.MAX_VALUE;
+  private int findMinRatio(int[][] number) {
 
     for (int i = 1; i < number.length; i++) {
       double lastElement = number[i][number[i].length - 1];
@@ -74,28 +77,29 @@ public class Linear_Programming_Cal {
 
       if (firstElement > 0 && lastElement > 0) { // Avoid negative, > 0 or >= 0 ?
         minRatio = Math.min(minRatio, lastElement / firstElement);
+        minIndex = i;
       }
     }
 
-    return minRatio;
+    return minIndex;
   }
 
   /**
-   * Bland's rule, it should return related position 
+   * Bland's rule, it should return related position
    * @param number number
    * @return negative element
    */
   private int findNegative(int[][] number) {
-    int negativeElement = 0;
 
     //How to restart and continue to second iterate ?
     for(int i=0; i<number.length; i++) {
       if(number[0][i] < 0 && negativeElement == 0) {
         negativeElement = number[0][i];
+        negativeIndex = i;
       }
     }
 
-    return negativeElement;
+    return negativeIndex;
   }
 
   /**
@@ -104,16 +108,30 @@ public class Linear_Programming_Cal {
    * @param number number
    */
   private int[][] modifyArray(int[][] number) {
+    double neg = number[0][negativeIndex];
+    double minRat;
+    double absoluteElement;
+    double absoluteRow;
 
+    for(int i=0; i<number.length; i++) {
+      for (int j=0; j<number[i].length; j++) {
+        minRat = number[minIndex][i];
+        absoluteElement = number[i][0];
+        absoluteRow = number[i][j];
+        double formula = neg - ((absoluteElement * absoluteRow) / minRat);
+        number[i][j] = (int) formula;
+      }
+    }
+
+    return number;
   }
 
 
   /**
    * Some fancy effects
-   * @param minRatio minRatio
    * @param number number
    */
-  private void simulateCalculation(double minRatio, int negative, int[][] number) {
+  private void simulateCalculation(int[][] number) {
     try {
       int numberOfDots = 5;
       int delay = 250;
@@ -128,7 +146,7 @@ public class Linear_Programming_Cal {
       Thread.sleep(delay);
       System.out.println("\n\nFirst min. ratio: " + minRatio);
       Thread.sleep(delay);
-      System.out.println("\nFirst negative element in objective function: " + negative);
+      System.out.println("\nFirst negative element in objective function: " + negativeElement);
       Thread.sleep(delay);
       System.out.println("\nThe max. number is: " + number[0][number[0].length - 1]);
     } catch (InterruptedException e) {
