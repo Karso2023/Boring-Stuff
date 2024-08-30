@@ -145,7 +145,7 @@ public class Linear_Programming_Cal {
       Thread.sleep(delay);
       System.out.println("\n\nFirst min. ratio: " + minRatio);
       Thread.sleep(delay);
-      System.out.println("\nFirst negative element in objective function: " + negativeElement);
+      System.out.println("\nFirst negative element in the objective function: " + negativeElement);
       Thread.sleep(delay);
       System.out.println("\n1st Updated Array: ");
       for (int[] row : updatedArray) {
