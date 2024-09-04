@@ -128,14 +128,23 @@ public class Linear_Programming_Cal {
     double absoluteRow;
 
     /*
-
+    Logic bugs up here
+    1st min index = 3
+    1st negative index = 0
      */
     for(int i=0; i<number.length; i++) {
-        minRat = number[minIndex][i];
+      System.out.println(number.length);
+        minRat = number[minIndex-1][i];
+
         absoluteElement = number[i][0];
-        absoluteRow = number[i][number[i].length-1];
+        absoluteRow = number[0][i];
         double formula = neg - ((absoluteElement * absoluteRow) / minRat);
         number[i][number[i].length-1] = (int) formula;
+
+//      System.out.println("neg: " + neg);
+//      System.out.println("minIndex: " + minRat);
+//      System.out.println("absoluteElement: " + absoluteElement);
+//      System.out.println("absoluteRow: " + absoluteRow);
     }
 
     return number;
@@ -151,7 +160,6 @@ public class Linear_Programming_Cal {
       int numberOfDots = 5;
       int delay = 250;
       int[][] updatedArray = modifyArray(number);
-
       Thread.sleep(delay);
       System.out.println("\nCalculating\n");
 
